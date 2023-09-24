@@ -46,7 +46,7 @@ namespace Stikers.Controllers
 
         // GET api/values/5
         SqlConnection cnn;
-        string connetionString = "Data Source=SRV-APPDB;Initial Catalog=****;User ID=****;Password=***;";
+        string connetionString = "Data Source=******;Initial Catalog=****;User ID=****;Password=***;";
 
 
         public PersonalDetails GetPersonalDetailsFromNPAT(string EXTNR )
@@ -56,7 +56,7 @@ namespace Stikers.Controllers
             cnn.Open();
 
             EXTNR = EXTNR.Replace("-", "");
-            string Query = "SELECT [PATNR], [GSCHL], [NNAME], [GBNAM], [VNAME], FORMAT([GBDAT], 'yyyy-MM-dd') GBDAT, [EXTNR], DATEDIFF(hour, [GBDAT], getdate())/8766 Age  FROM [NAMER].[dbo].[NPAT]  WHERE CONVERT(bigint, REPLACE([EXTNR], '-','')) = CONVERT(bigint, REPLACE('" + EXTNR + "', '-',''))";
+            string Query = "SELECT [PATNR], [GSCHL], [NNAME], [GBNAM], [VNAME], FORMAT([GBDAT], 'yyyy-MM-dd') GBDAT, [EXTNR], DATEDIFF(hour, [GBDAT], getdate())/8766 Age  FROM [dbo].[NPAT]  WHERE CONVERT(bigint, REPLACE([EXTNR], '-','')) = CONVERT(bigint, REPLACE('" + EXTNR + "', '-',''))";
 
             SqlCommand commandDropDownsOptions = new SqlCommand(Query, cnn);
             commandDropDownsOptions.CommandTimeout = 360;
